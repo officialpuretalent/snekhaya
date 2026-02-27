@@ -554,7 +554,7 @@ nav.scrolled {
     align-items: center;
 }
 
-/* Subtle radial wash */
+/* Top-right gold orb */
 .hero::before {
     content: '';
     position: absolute;
@@ -562,7 +562,19 @@ nav.scrolled {
     right: -10%;
     width: 70vw;
     height: 70vw;
-    background: radial-gradient(circle, rgba(184, 154, 78, 0.055) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(184, 154, 78, 0.13) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Bottom-left warm cream orb */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 65vw;
+    height: 65vw;
+    background: radial-gradient(circle, rgba(246, 237, 216, 0.7) 0%, transparent 60%);
     pointer-events: none;
 }
 
@@ -1178,7 +1190,7 @@ nav.scrolled {
 .service-card-featured .service-body {
     font-size: 0.8125rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.48);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.8;
 }
 
@@ -1435,7 +1447,7 @@ nav.scrolled {
 .cta-strip p {
     font-size: 0.875rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.8;
     text-align: center;
     max-width: 340px;
@@ -1635,6 +1647,23 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+footer .trust-bar {
+    background: transparent;
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 2.5rem;
+}
+
+footer .trust-bar-label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+footer .trust-badge {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.65);
+}
+
 .footer-inner {
     max-width: 1200px;
     margin: 0 auto;
@@ -1673,7 +1702,7 @@ footer {
 .footer-copy {
     font-size: 0.6875rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.45);
     letter-spacing: 0.02em;
     margin-top: 1rem;
 }
@@ -1682,7 +1711,7 @@ footer {
     font-family: 'Cormorant', serif;
     font-style: italic;
     font-size: 1.0625rem;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.4);
     text-align: center;
 }
 

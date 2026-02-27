@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Consultation — Snekhaya Tax & Accounting Advisory</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─────────────────────────────────────────
+   TOKENS — shared with main site
+───────────────────────────────────────── */
+        :root {
+            --gold: #B89A4E;
+            --gold-dim: #C9AE72;
+            --gold-pale: #F6EDD8;
+            --gold-rule: rgba(184, 154, 78, 0.22);
+            --ink: #0F0F0F;
+            --ink-2: #3A3A3A;
+            --ink-3: #7A7A78;
+            --ink-4: #B0AFA9;
+            --surface: #FFFFFF;
+            --surface-2: #F8F7F4;
+            --surface-3: #F1EFE9;
+            --border: rgba(0, 0, 0, 0.07);
+            --border-mid: rgba(0, 0, 0, 0.11);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.05), 0 16px 48px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.06), 0 40px 80px rgba(0, 0, 0, 0.09);
+            --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--surface-2);
+            color: var(--ink);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--gold-pale);
+            color: var(--ink);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ─────────────────────────────────────────
+   NAV (minimal)
+───────────────────────────────────────── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-inner {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .nav-monogram {
+            font-family: 'Cormorant', serif;
+            font-size: 1.625rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .nav-sep {
+            width: 1px;
+            height: 26px;
+            background: linear-gradient(to bottom, transparent, var(--border-mid), transparent);
+        }
+
+        .nav-wordmark {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .nw-main {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        .nw-sub {
+            font-size: 0.5rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--ink-3);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--ink);
+        }
+
+        .nav-back svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.75;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ─────────────────────────────────────────
+   PAGE SHELL
+───────────────────────────────────────── */
+        .page {
+            min-height: calc(100vh - 64px);
+            padding: 3.5rem 1.5rem 6rem;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto 3.5rem;
+            animation: fadeUp 0.7s var(--ease-out) both;
+        }
+
+        .page-header .eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .eyebrow-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .eyebrow-text {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .page-title {
+            font-family: 'Cormorant', serif;
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+
+        .page-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .page-subtitle {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--ink-3);
+            line-height: 1.8;
+        }
+
+        /* ─────────────────────────────────────────
+   STEPPER
+───────────────────────────────────────── */
+        .stepper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            max-width: 480px;
+            margin: 0 auto 3rem;
+            animation: fadeUp 0.7s 0.1s var(--ease-out) both;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--ink-4);
+            background: var(--surface);
+            position: relative;
+            z-index: 1;
+            transition: all 0.35s var(--ease);
+        }
+
+        .step.active .step-circle {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--surface);
+        }
+
+        .step.done .step-circle {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--surface);
+        }
+
+        .step.done .step-circle::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 6px;
+            border-left: 2px solid var(--surface);
+            border-bottom: 2px solid var(--surface);
+            transform: rotate(-45deg) translateY(-1px);
+        }
+
+        .step.done .step-num {
+            display: none;
+        }
+
+        .step-label {
+            font-size: 0.5625rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-4);
+            transition: color 0.3s;
+        }
+
+        .step.active .step-label,
+        .step.done .step-label {
+            color: var(--gold);
+        }
+
+        .step-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border-mid);
+            margin-top: -14px;
+            /* align with circle center */
+            position: relative;
+            z-index: 0;
+            transition: background 0.4s;
+        }
+
+        .step-line.done {
+            background: var(--gold-rule);
+        }
+
+        /* ─────────────────────────────────────────
+   BOOKING CARD
+───────────────────────────────────────── */
+        .booking-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            animation: fadeUp 0.7s 0.18s var(--ease-out) both;
+        }
+
+        /* ── STEP PANELS ── */
+        .step-panel {
+            display: none;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        /* ─────────────────────────────────────────
+   STEP 1 — CALENDAR
+───────────────────────────────────────── */
+        .cal-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .cal-left {
+            padding: 2.5rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .cal-right {
+            padding: 2.5rem;
+        }
+
+        .cal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.75rem;
+        }
+
+        .cal-month-label {
+            font-family: 'Cormorant', serif;
+            font-size: 1.375rem;
+            font-weight: 400;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .cal-nav-btns {
+            display: flex;
+            gap: 0.375rem;
+        }
+
+        .cal-nav-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border-mid);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cal-nav-btn:hover {
+            border-color: var(--gold);
+            background: var(--gold-pale);
+        }
+
+        .cal-nav-btn svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--ink-3);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .cal-day-name {
+            text-align: center;
+            padding: 0 0 0.75rem;
+            font-size: 0.5625rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-4);
+        }
+
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            color: var(--ink-2);
+            transition: all 0.18s var(--ease);
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .cal-day:not(.empty):not(.past):hover {
+            background: var(--surface-3);
+            border-color: var(--gold-rule);
+        }
+
+        .cal-day.today::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .cal-day.selected {
+            background: var(--gold);
+            color: var(--surface);
+            font-weight: 500;
+            border-color: var(--gold);
+        }
+
+        .cal-day.selected::after {
+            background: var(--surface);
+        }
+
+        .cal-day.empty {
+            pointer-events: none;
+        }
+
+        .cal-day.past {
+            color: var(--ink-4);
+            pointer-events: none;
+        }
+
+        /* Time slots */
+        .time-header {
+            margin-bottom: 1rem;
+        }
+
+        .time-header-label {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .time-selected-date {
+            font-family: 'Cormorant', serif;
+            font-size: 1.375rem;
+            font-weight: 400;
+            color: var(--ink);
+        }
+
+        .time-placeholder {
+            color: var(--ink-4);
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .time-slot {
+            padding: 0.625rem 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border-mid);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--ink-2);
+            cursor: pointer;
+            transition: all 0.18s var(--ease);
+            background: var(--surface);
+        }
+
+        .time-slot:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--gold-pale);
+        }
+
+        .time-slot.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--surface);
+            font-weight: 500;
+        }
+
+        .time-slot.unavailable {
+            background: var(--surface-2);
+            color: var(--ink-4);
+            cursor: not-allowed;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .slots-note {
+            margin-top: 1rem;
+            font-size: 0.6875rem;
+            font-weight: 300;
+            color: var(--ink-4);
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .slots-note svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--ink-4);
+            fill: none;
+            stroke-width: 1.75;
+            flex-shrink: 0;
+            margin-top: 1px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Duration toggle */
+        .duration-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .dur-btn {
+            flex: 1;
+            padding: 0.625rem;
+            text-align: center;
+            border: 1px solid var(--border-mid);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--ink-3);
+            cursor: pointer;
+            transition: all 0.18s;
+            background: var(--surface);
+        }
+
+        .dur-btn:hover {
+            border-color: var(--gold);
+        }
+
+        .dur-btn.selected {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--gold-pale);
+            font-weight: 500;
+        }
+
+        .dur-label {
+            font-size: 0.5625rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-4);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* ─────────────────────────────────────────
+   STEP 2 — DETAILS
+───────────────────────────────────────── */
+        .details-layout {
+            padding: 2.5rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .details-grid .full {
+            grid-column: span 2;
+        }
+
+        .booking-summary-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--surface-3);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--gold-rule);
+        }
+
+        .bsb-icon {
+            width: 34px;
+            height: 34px;
+            background: var(--gold-pale);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .bsb-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.75;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .bsb-label {
+            font-size: 0.5625rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.15rem;
+        }
+
+        .bsb-value {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--ink-2);
+        }
+
+        .bsb-change {
+            margin-left: auto;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .bsb-change:hover {
+            text-decoration: underline;
+        }
+
+        /* Form fields */
+        .form-section-title {
+            font-family: 'Cormorant', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+            grid-column: span 2;
+            padding-top: 0.5rem;
+        }
+
+        .form-section-title+.form-section-title {
+            margin-top: 0.5rem;
+        }
+
+        .fgroup {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .fgroup.full {
+            grid-column: span 2;
+        }
+
+        .flabel {
+            font-size: 0.5625rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+        }
+
+        .finput,
+        .fselect,
+        .ftextarea {
+            background: var(--surface-2);
+            border: 1px solid var(--border-mid);
+            color: var(--ink);
+            padding: 0.8125rem 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+        }
+
+        .finput:focus,
+        .fselect:focus,
+        .ftextarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 154, 78, 0.1);
+        }
+
+        .finput::placeholder,
+        .ftextarea::placeholder {
+            color: var(--ink-4);
+        }
+
+        .ftextarea {
+            min-height: 100px;
+            resize: none;
+        }
+
+        /* ── Multi-select services ── */
+        .services-multi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .service-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-mid);
+            border-radius: 10px;
+            cursor: pointer;
+            background: var(--surface);
+            transition: all 0.2s var(--ease);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .service-pill:hover {
+            border-color: var(--gold-rule);
+            background: var(--gold-pale);
+        }
+
+        .service-pill.selected {
+            border-color: var(--gold);
+            background: var(--gold-pale);
+        }
+
+        .service-pill-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            flex-shrink: 0;
+            border: 1.5px solid var(--border-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .service-pill.selected .service-pill-check {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .service-pill-check svg {
+            width: 10px;
+            height: 10px;
+            stroke: var(--surface);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .service-pill.selected .service-pill-check svg {
+            opacity: 1;
+        }
+
+        .service-pill-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: var(--surface-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .service-pill-icon svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.75;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .service-pill-label {
+            font-size: 0.8125rem;
+            font-weight: 400;
+            color: var(--ink-2);
+            line-height: 1.2;
+        }
+
+        .service-pill-sub {
+            font-size: 0.6rem;
+            color: var(--ink-4);
+            font-weight: 300;
+            display: block;
+            margin-top: 1px;
+        }
+
+        /* ─────────────────────────────────────────
+   PANEL FOOTER
+───────────────────────────────────────── */
+        .panel-footer {
+            padding: 1.5rem 2.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface-2);
+        }
+
+        .panel-footer-note {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--ink-4);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .panel-footer-note svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--ink-4);
+            fill: none;
+            stroke-width: 1.75;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .panel-footer-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            padding: 0.875rem 1.875rem;
+            transition: all 0.25s var(--ease);
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--surface);
+        }
+
+        .btn-primary:hover {
+            background: var(--ink-2);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink-2);
+            border: 1px solid var(--border-mid);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--ink-3);
+        }
+
+        .btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .btn-gold-full {
+            background: var(--gold);
+            color: var(--surface);
+        }
+
+        .btn-gold-full:hover {
+            background: #a6893f;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(184, 154, 78, 0.3);
+        }
+
+        /* ─────────────────────────────────────────
+   CONFIRMATION SCREEN
+───────────────────────────────────────── */
+        #confirmationScreen {
+            display: none;
+            max-width: 680px;
+            margin: 0 auto;
+            animation: fadeUp 0.6s var(--ease-out) both;
+        }
+
+        #confirmationScreen.visible {
+            display: block;
+        }
+
+        .conf-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .conf-top {
+            padding: 3rem 3rem 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(to bottom, var(--gold-pale), var(--surface));
+        }
+
+        .conf-icon-ring {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--gold-rule);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 16px rgba(184, 154, 78, 0.15);
+            animation: popIn 0.5s 0.2s var(--ease-spring) both;
+        }
+
+        .conf-icon-ring svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .conf-heading {
+            font-family: 'Cormorant', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--ink);
+            line-height: 1.15;
+        }
+
+        .conf-heading em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .conf-subheading {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--ink-3);
+            line-height: 1.75;
+            max-width: 440px;
+            margin-inline: auto;
+        }
+
+        /* Booking details summary */
+        .conf-details {
+            padding: 2rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .conf-detail {
+            padding: 1.125rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+
+        .conf-detail:nth-child(even) {
+            border-right: none;
+        }
+
+        .conf-detail:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .conf-detail-label {
+            font-size: 0.5625rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .conf-detail-value {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--ink-2);
+            line-height: 1.5;
+        }
+
+        /* What happens next */
+        .conf-next {
+            padding: 2rem 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .conf-next-title {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 1.5rem;
+        }
+
+        .conf-next-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .conf-step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .conf-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--surface-3);
+            border: 1px solid var(--gold-rule);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .conf-step-body {}
+
+        .conf-step-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+
+        .conf-step-text {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--ink-3);
+            line-height: 1.7;
+        }
+
+        /* Conf footer */
+        .conf-footer {
+            padding: 1.75rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface-2);
+        }
+
+        .conf-footer-note {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--ink-4);
+        }
+
+        .conf-footer-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border-mid);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--surface);
+        }
+
+        .btn-back-home:hover {
+            border-color: var(--ink-3);
+            color: var(--ink);
+        }
+
+        /* ─────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.6);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+        @media (max-width: 760px) {
+            .cal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cal-left {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-grid .full,
+            .form-section-title {
+                grid-column: span 1;
+            }
+
+            .services-multi {
+                grid-template-columns: 1fr;
+            }
+
+            .conf-details {
+                grid-template-columns: 1fr;
+            }
+
+            .conf-detail {
+                border-right: none;
+            }
+
+            .conf-detail:nth-last-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .conf-detail:last-child {
+                border-bottom: none;
+            }
+
+            .conf-footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .panel-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .panel-footer-actions {
+                flex-direction: column;
+            }
+
+            .conf-top {
+                padding: 2rem 1.5rem;
+            }
+
+            .conf-details,
+            .conf-next,
+            .conf-footer {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .nav-inner {
+                padding: 0 1.25rem;
+            }
+        }
+
+        /* Utility */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════
+     NAV
+═══════════════════════════════════════ -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <span class="nav-monogram">STA</span>
+                <div class="nav-sep"></div>
+                <div class="nav-wordmark">
+                    <span class="nw-main">Snekhaya</span>
+                    <span class="nw-sub">Tax &amp; Accounting Advisory</span>
+                </div>
+            </div>
+            <a href="snekhaya-website.html" class="nav-back">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back to site
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════
+     BOOKING FLOW
+═══════════════════════════════════════ -->
+    <div class="page" id="bookingFlow">
+        <!-- Header -->
+        <div class="page-header">
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                <span class="eyebrow-text">Schedule a Session</span>
+            </div>
+            <h1 class="page-title">Book a <em>Consultation</em></h1>
+            <p class="page-subtitle">Select a date and time, tell us about yourself and your needs, and we'll take care
+                of the rest.</p>
+        </div>
+
+        <!-- Stepper -->
+        <div class="stepper" id="stepper">
+            <div class="step active" id="step-indicator-1">
+                <div class="step-circle"><span class="step-num">1</span></div>
+                <span class="step-label">Date &amp; Time</span>
+            </div>
+            <div class="step-line" id="step-line-1"></div>
+            <div class="step" id="step-indicator-2">
+                <div class="step-circle"><span class="step-num">2</span></div>
+                <span class="step-label">Your Details</span>
+            </div>
+            <div class="step-line" id="step-line-2"></div>
+            <div class="step" id="step-indicator-3">
+                <div class="step-circle"><span class="step-num">3</span></div>
+                <span class="step-label">Confirm</span>
+            </div>
+        </div>
+
+        <!-- ── BOOKING CARD ── -->
+        <div class="booking-card" id="bookingCard">
+
+            <!-- ───────────────────────────────────
+         STEP 1 · DATE & TIME
+    ─────────────────────────────────────── -->
+            <div class="step-panel active" id="panel-1">
+                <div class="cal-layout">
+
+                    <!-- Calendar -->
+                    <div class="cal-left">
+                        <div class="cal-header">
+                            <span class="cal-month-label" id="calMonthLabel">Month Year</span>
+                            <div class="cal-nav-btns">
+                                <button class="cal-nav-btn" id="prevMonth" aria-label="Previous month">
+                                    <svg viewBox="0 0 24 24">
+                                        <polyline points="15 18 9 12 15 6" />
+                                    </svg>
+                                </button>
+                                <button class="cal-nav-btn" id="nextMonth" aria-label="Next month">
+                                    <svg viewBox="0 0 24 24">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cal-grid" id="calGrid">
+                            <!-- JS populated -->
+                        </div>
+                    </div>
+
+                    <!-- Time slots -->
+                    <div class="cal-right">
+                        <div class="time-header">
+                            <div class="time-header-label">Available Times</div>
+                            <div class="time-selected-date" id="selectedDateLabel">
+                                <span class="time-placeholder">Select a date</span>
+                            </div>
+                        </div>
+
+                        <span class="dur-label">Session Duration</span>
+                        <div class="duration-toggle">
+                            <div class="dur-btn selected" data-dur="30">30 min</div>
+                            <div class="dur-btn" data-dur="60">1 hour</div>
+                            <div class="dur-btn" data-dur="90">90 min</div>
+                        </div>
+
+                        <div class="slots-grid" id="slotsGrid">
+                            <!-- JS populated -->
+                        </div>
+
+                        <p class="slots-note" id="slotsNote" style="display:none">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="12" />
+                                <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg>
+                            All times are in South African Standard Time (SAST, UTC+2).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="panel-footer">
+                    <span class="panel-footer-note">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        Select a date and time to continue
+                    </span>
+                    <div class="panel-footer-actions">
+                        <button class="btn btn-primary" id="step1Next" disabled>
+                            Continue
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" transform="rotate(180 12 12)" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /panel-1 -->
+
+
+            <!-- ───────────────────────────────────
+         STEP 2 · YOUR DETAILS
+    ─────────────────────────────────────── -->
+            <div class="step-panel" id="panel-2">
+                <div class="details-layout">
+
+                    <!-- Summary bar -->
+                    <div class="booking-summary-bar">
+                        <div class="bsb-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="bsb-label">Appointment</div>
+                            <div class="bsb-value" id="summaryDateTime">—</div>
+                        </div>
+                        <span class="bsb-change" onclick="goToStep(1)">Change</span>
+                    </div>
+
+                    <div class="details-grid">
+                        <!-- Contact details header -->
+                        <div class="form-section-title">Contact Details</div>
+
+                        <div class="fgroup">
+                            <label class="flabel">First Name *</label>
+                            <input type="text" class="finput" id="firstName" placeholder="Your first name" required>
+                        </div>
+                        <div class="fgroup">
+                            <label class="flabel">Last Name *</label>
+                            <input type="text" class="finput" id="lastName" placeholder="Your last name" required>
+                        </div>
+                        <div class="fgroup">
+                            <label class="flabel">Email Address *</label>
+                            <input type="email" class="finput" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="fgroup">
+                            <label class="flabel">Phone Number *</label>
+                            <input type="tel" class="finput" id="phone" placeholder="+27 00 000 0000" required>
+                        </div>
+                        <div class="fgroup full">
+                            <label class="flabel">Company / Business Name</label>
+                            <input type="text" class="finput" id="company" placeholder="Your business name (optional)">
+                        </div>
+
+                        <!-- Services header -->
+                        <div class="form-section-title" style="margin-top:0.75rem">Services Required
+                            <span
+                                style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:300;color:var(--ink-4);margin-left:0.5rem;">(select
+                                all that apply)</span>
+                        </div>
+
+                        <!-- Multi-select service pills -->
+                        <div class="full">
+                            <div class="services-multi" id="servicesPills">
+
+                                <div class="service-pill" data-service="Tax & Compliance">
+                                    <div class="service-pill-check"><svg viewBox="0 0 12 9">
+                                            <polyline points="1 4 4.5 7.5 11 1" />
+                                        </svg></div>
+                                    <div class="service-pill-icon"><svg viewBox="0 0 24 24">
+                                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                                            <polyline points="14 2 14 8 20 8" />
+                                            <line x1="16" y1="13" x2="8" y2="13" />
+                                            <line x1="16" y1="17" x2="8" y2="17" />
+                                        </svg></div>
+                                    <div><span class="service-pill-label">Tax &amp; Compliance</span><span
+                                            class="service-pill-sub">Returns · VAT · Payroll</span></div>
+                                </div>
+
+                                <div class="service-pill" data-service="Registrations & Filings">
+                                    <div class="service-pill-check"><svg viewBox="0 0 12 9">
+                                            <polyline points="1 4 4.5 7.5 11 1" />
+                                        </svg></div>
+                                    <div class="service-pill-icon"><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <line x1="12" y1="8" x2="12" y2="16" />
+                                            <line x1="8" y1="12" x2="16" y2="12" />
+                                        </svg></div>
+                                    <div><span class="service-pill-label">Registrations &amp; Filings</span><span
+                                            class="service-pill-sub">CIPC · VAT · Customs</span></div>
+                                </div>
+
+                                <div class="service-pill" data-service="Financial Services">
+                                    <div class="service-pill-check"><svg viewBox="0 0 12 9">
+                                            <polyline points="1 4 4.5 7.5 11 1" />
+                                        </svg></div>
+                                    <div class="service-pill-icon"><svg viewBox="0 0 24 24">
+                                            <line x1="12" y1="1" x2="12" y2="23" />
+                                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                                        </svg></div>
+                                    <div><span class="service-pill-label">Financial Services</span><span
+                                            class="service-pill-sub">Statements · Cashflow · Budgets</span></div>
+                                </div>
+
+                                <div class="service-pill" data-service="Business Support">
+                                    <div class="service-pill-check"><svg viewBox="0 0 12 9">
+                                            <polyline points="1 4 4.5 7.5 11 1" />
+                                        </svg></div>
+                                    <div class="service-pill-icon"><svg viewBox="0 0 24 24">
+                                            <rect x="2" y="7" width="20" height="14" rx="2" />
+                                            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                                        </svg></div>
+                                    <div><span class="service-pill-label">Business Support</span><span
+                                            class="service-pill-sub">CFO Advisory · Proposals</span></div>
+                                </div>
+
+                                <div class="service-pill" data-service="Specialized Services">
+                                    <div class="service-pill-check"><svg viewBox="0 0 12 9">
+                                            <polyline points="1 4 4.5 7.5 11 1" />
+                                        </svg></div>
+                                    <div class="service-pill-icon"><svg viewBox="0 0 24 24">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                        </svg></div>
+                                    <div><span class="service-pill-label">Specialized Services</span><span
+                                            class="service-pill-sub">COIDA · Reinstatement</span></div>
+                                </div>
+
+                                <div class="service-pill" data-service="Monthly Retainer">
+                                    <div class="service-pill-check"><svg viewBox="0 0 12 9">
+                                            <polyline points="1 4 4.5 7.5 11 1" />
+                                        </svg></div>
+                                    <div class="service-pill-icon"><svg viewBox="0 0 24 24">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                                            <line x1="16" y1="2" x2="16" y2="6" />
+                                            <line x1="8" y1="2" x2="8" y2="6" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                        </svg></div>
+                                    <div><span class="service-pill-label">Monthly Retainer</span><span
+                                            class="service-pill-sub">Ongoing partnership</span></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="fgroup full" style="margin-top:0.5rem">
+                            <label class="flabel">Additional Context</label>
+                            <textarea class="ftextarea" id="description"
+                                placeholder="Tell us more about your situation, specific questions, or anything you'd like us to know before the session…"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <span class="panel-footer-note">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        Your information is kept private and secure
+                    </span>
+                    <div class="panel-footer-actions">
+                        <button class="btn btn-ghost" onclick="goToStep(1)">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                            Back
+                        </button>
+                        <button class="btn btn-primary" id="step2Next">
+                            Review &amp; Confirm
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" transform="rotate(180 12 12)" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /panel-2 -->
+
+
+            <!-- ───────────────────────────────────
+         STEP 3 · REVIEW
+    ─────────────────────────────────────── -->
+            <div class="step-panel" id="panel-3">
+                <div class="details-layout">
+                    <div style="max-width:600px">
+                        <div style="margin-bottom:1.75rem">
+                            <div class="bsb-label" style="margin-bottom:0.5rem">Review Your Booking</div>
+                            <p style="font-size:0.875rem;font-weight:300;color:var(--ink-3);line-height:1.75">Please
+                                confirm the details below before we schedule your consultation.</p>
+                        </div>
+
+                        <!-- Review rows -->
+                        <div
+                            style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem">
+                            <div class="conf-detail"
+                                style="padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:flex-start">
+                                <div class="bsb-icon" style="margin-top:2px"><svg viewBox="0 0 24 24"
+                                        style="width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg></div>
+                                <div style="flex:1">
+                                    <div class="conf-detail-label">Date &amp; Time</div>
+                                    <div class="conf-detail-value" id="review-datetime">—</div>
+                                </div>
+                                <span class="bsb-change" onclick="goToStep(1)">Edit</span>
+                            </div>
+                            <div
+                                style="padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:flex-start">
+                                <div class="bsb-icon" style="margin-top:2px"><svg viewBox="0 0 24 24"
+                                        style="width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round">
+                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                        <circle cx="12" cy="7" r="4" />
+                                    </svg></div>
+                                <div style="flex:1">
+                                    <div class="conf-detail-label">Contact</div>
+                                    <div class="conf-detail-value" id="review-contact">—</div>
+                                </div>
+                                <span class="bsb-change" onclick="goToStep(2)">Edit</span>
+                            </div>
+                            <div
+                                style="padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:flex-start">
+                                <div class="bsb-icon" style="margin-top:2px"><svg viewBox="0 0 24 24"
+                                        style="width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round">
+                                        <polygon
+                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                    </svg></div>
+                                <div style="flex:1">
+                                    <div class="conf-detail-label">Services</div>
+                                    <div class="conf-detail-value" id="review-services">—</div>
+                                </div>
+                                <span class="bsb-change" onclick="goToStep(2)">Edit</span>
+                            </div>
+                            <div id="review-desc-row" style="padding:1.25rem 1.5rem;display:none">
+                                <div class="conf-detail-label">Additional Context</div>
+                                <div class="conf-detail-value" id="review-desc"
+                                    style="margin-top:0.3rem;font-style:italic;color:var(--ink-3)">—</div>
+                            </div>
+                        </div>
+
+                        <p style="font-size:0.8rem;font-weight:300;color:var(--ink-4);line-height:1.7">
+                            By submitting, a confirmation email will be sent to you, a calendar event will be created,
+                            and our team will review your requirements before the session to ensure maximum value from
+                            our time together.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <span class="panel-footer-note">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        Confirmation sent to your email
+                    </span>
+                    <div class="panel-footer-actions">
+                        <button class="btn btn-ghost" onclick="goToStep(2)">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                            Back
+                        </button>
+                        <button class="btn btn-gold-full" id="submitBtn" onclick="submitBooking()">
+                            Confirm Booking
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /panel-3 -->
+
+        </div><!-- /booking-card -->
+    </div><!-- /bookingFlow -->
+
+
+    <!-- ═══════════════════════════════════════
+     CONFIRMATION SCREEN
+═══════════════════════════════════════ -->
+    <div class="page hidden" id="confirmationScreen">
+        <div class="conf-card">
+
+            <div class="conf-top">
+                <div class="conf-icon-ring">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </div>
+                <h2 class="conf-heading">Your session is <em>confirmed</em></h2>
+                <p class="conf-subheading">
+                    Thank you for booking with Snekhaya Tax &amp; Accounting Advisory. Everything is in motion — here's
+                    what happens next.
+                </p>
+            </div>
+
+            <div class="conf-details">
+                <div class="conf-detail">
+                    <div class="conf-detail-label">Date &amp; Time</div>
+                    <div class="conf-detail-value" id="conf-datetime">—</div>
+                </div>
+                <div class="conf-detail">
+                    <div class="conf-detail-label">Duration</div>
+                    <div class="conf-detail-value" id="conf-duration">—</div>
+                </div>
+                <div class="conf-detail">
+                    <div class="conf-detail-label">Client</div>
+                    <div class="conf-detail-value" id="conf-client">—</div>
+                </div>
+                <div class="conf-detail">
+                    <div class="conf-detail-label">Services</div>
+                    <div class="conf-detail-value" id="conf-services">—</div>
+                </div>
+            </div>
+
+            <div class="conf-next">
+                <div class="conf-next-title">What Happens Next</div>
+                <div class="conf-next-steps">
+                    <div class="conf-step">
+                        <div class="conf-step-num">1</div>
+                        <div class="conf-step-body">
+                            <div class="conf-step-title">Confirmation email sent</div>
+                            <div class="conf-step-text">A confirmation email with all booking details has been sent to
+                                your inbox. Please check your spam folder if it doesn't arrive within a few minutes.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conf-step">
+                        <div class="conf-step-num">2</div>
+                        <div class="conf-step-body">
+                            <div class="conf-step-title">Calendar invite on its way</div>
+                            <div class="conf-step-text">You'll receive a Google Calendar invite with a meeting link or
+                                venue details. Add it to your calendar to ensure you don't miss your session.</div>
+                        </div>
+                    </div>
+                    <div class="conf-step">
+                        <div class="conf-step-num">3</div>
+                        <div class="conf-step-body">
+                            <div class="conf-step-title">We'll prepare for your session</div>
+                            <div class="conf-step-text">Our team will review your requirements and prepare relevant
+                                insights and questions for your session. You may receive a follow-up email with any
+                                documents or information to bring along.</div>
+                        </div>
+                    </div>
+                    <div class="conf-step">
+                        <div class="conf-step-num">4</div>
+                        <div class="conf-step-body">
+                            <div class="conf-step-title">We meet — and get to work</div>
+                            <div class="conf-step-text">Your consultation will be focused, confidential, and productive.
+                                We'll walk you through your options, answer your questions, and set a clear path
+                                forward.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conf-footer">
+                <span class="conf-footer-note">Questions? Email us at info@snekhaya.co.za</span>
+                <div class="conf-footer-actions">
+                    <a href="index.html" class="btn-back-home">
+                        <svg viewBox="0 0 24 24"
+                            style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                        Back to Website
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- /confirmationScreen -->
+
+
+    <script>
+        // ══════════════════════════════════════
+        //  STATE
+        // ══════════════════════════════════════
+        const state = {
+            currentStep: 1,
+            selectedDate: null,
+            selectedTime: null,
+            selectedDuration: '30',
+            selectedServices: new Set(),
+        };
+
+        // ══════════════════════════════════════
+        //  CALENDAR
+        // ══════════════════════════════════════
+        const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+        // Simulate unavailable times
+        const UNAVAILABLE = { 2: [3, 4], 10: [1, 2, 3], 15: [5, 6] };
+
+        let calYear, calMonth;
+
+        function initCalendar() {
+            const now = new Date();
+            calYear = now.getFullYear();
+            calMonth = now.getMonth();
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            document.getElementById('calMonthLabel').textContent = `${MONTHS[calMonth]} ${calYear}`;
+            const grid = document.getElementById('calGrid');
+            grid.innerHTML = '';
+
+            // Day headers
+            DAYS.forEach(d => {
+                const el = document.createElement('div');
+                el.className = 'cal-day-name'; el.textContent = d;
+                grid.appendChild(el);
+            });
+
+            const firstDay = new Date(calYear, calMonth, 1).getDay();
+            const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+
+            // Blanks
+            for (let i = 0; i < firstDay; i++) {
+                const el = document.createElement('div');
+                el.className = 'cal-day empty';
+                grid.appendChild(el);
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const el = document.createElement('div');
+                const thisDate = new Date(calYear, calMonth, d);
+                const isToday = thisDate.toDateString() === today.toDateString();
+                const isPast = thisDate < today;
+                const isWeekend = thisDate.getDay() === 0 || thisDate.getDay() === 6;
+                const isSelected = state.selectedDate &&
+                    state.selectedDate.toDateString() === thisDate.toDateString();
+
+                el.className = 'cal-day' +
+                    (isToday ? ' today' : '') +
+                    (isPast || isWeekend ? ' past' : '') +
+                    (isSelected ? ' selected' : '');
+                el.textContent = d;
+
+                if (!isPast && !isWeekend) {
+                    el.addEventListener('click', () => selectDate(thisDate));
+                }
+                grid.appendChild(el);
+            }
+        }
+
+        function selectDate(date) {
+            state.selectedDate = date;
+            state.selectedTime = null;
+            renderCalendar();
+            renderSlots();
+            checkStep1();
+        }
+
+        function renderSlots() {
+            const grid = document.getElementById('slotsGrid');
+            const note = document.getElementById('slotsNote');
+            const label = document.getElementById('selectedDateLabel');
+
+            if (!state.selectedDate) {
+                grid.innerHTML = '';
+                label.innerHTML = '<span class="time-placeholder">Select a date</span>';
+                return;
+            }
+
+            const d = state.selectedDate;
+            label.textContent = d.toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long' });
+            note.style.display = 'flex';
+
+            const dayKey = d.getDate();
+            const unavail = UNAVAILABLE[dayKey] || [];
+
+            const slots = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'];
+            grid.innerHTML = '';
+            slots.forEach((t, i) => {
+                const el = document.createElement('div');
+                const isUnavail = unavail.includes(i);
+                el.className = 'time-slot' + (isUnavail ? ' unavailable' : '') + (state.selectedTime === t ? ' selected' : '');
+                el.textContent = t;
+                if (!isUnavail) {
+                    el.addEventListener('click', () => {
+                        state.selectedTime = t;
+                        document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                        el.classList.add('selected');
+                        checkStep1();
+                    });
+                }
+                grid.appendChild(el);
+            });
+        }
+
+        function checkStep1() {
+            const btn = document.getElementById('step1Next');
+            btn.disabled = !(state.selectedDate && state.selectedTime);
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
+            renderCalendar();
+        });
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
+            renderCalendar();
+        });
+
+        // Duration toggle
+        document.querySelectorAll('.dur-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                state.selectedDuration = btn.dataset.dur;
+            });
+        });
+
+        document.getElementById('step1Next').addEventListener('click', () => {
+            if (state.selectedDate && state.selectedTime) goToStep(2);
+        });
+
+        // ══════════════════════════════════════
+        //  SERVICE PILLS
+        // ══════════════════════════════════════
+        document.querySelectorAll('.service-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const svc = pill.dataset.service;
+                if (state.selectedServices.has(svc)) {
+                    state.selectedServices.delete(svc);
+                    pill.classList.remove('selected');
+                } else {
+                    state.selectedServices.add(svc);
+                    pill.classList.add('selected');
+                }
+            });
+        });
+
+        // ══════════════════════════════════════
+        //  STEP NAVIGATION
+        // ══════════════════════════════════════
+        function goToStep(n) {
+            // Validate step 2 before going to step 3
+            if (n === 3) {
+                const first = document.getElementById('firstName').value.trim();
+                const last = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                if (!first || !last || !email || !phone) {
+                    showValidationError();
+                    return;
+                }
+                if (state.selectedServices.size === 0) {
+                    showServiceError();
+                    return;
+                }
+                populateReview();
+            }
+
+            state.currentStep = n;
+
+            // Panels
+            document.querySelectorAll('.step-panel').forEach((p, i) => {
+                p.classList.toggle('active', i + 1 === n);
+            });
+
+            // Stepper indicators
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'done');
+                if (i + 1 === n) s.classList.add('active');
+                if (i + 1 < n) s.classList.add('done');
+            });
+
+            // Lines
+            document.querySelectorAll('.step-line').forEach((l, i) => {
+                l.classList.toggle('done', i + 1 < n);
+            });
+
+            // Update summary bar date
+            if (n >= 2 && state.selectedDate && state.selectedTime) {
+                const dtStr = formatDateTime();
+                document.getElementById('summaryDateTime').textContent = dtStr;
+            }
+
+            // Scroll to top of card
+            document.getElementById('bookingCard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.getElementById('step2Next').addEventListener('click', () => goToStep(3));
+
+        function formatDateTime() {
+            const d = state.selectedDate;
+            const dayName = d.toLocaleDateString('en-ZA', { weekday: 'long' });
+            const dateStr = d.toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
+            const durMap = { '30': '30 min', '60': '1 hour', '90': '90 min' };
+            return `${dayName}, ${dateStr} at ${state.selectedTime} · ${durMap[state.selectedDuration]}`;
+        }
+
+        function populateReview() {
+            document.getElementById('review-datetime').textContent = formatDateTime();
+
+            const first = document.getElementById('firstName').value.trim();
+            const last = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const contactStr = `${first} ${last} · ${email} · ${phone}` + (company ? ` · ${company}` : '');
+            document.getElementById('review-contact').textContent = contactStr;
+
+            document.getElementById('review-services').textContent =
+                state.selectedServices.size > 0 ? [...state.selectedServices].join(', ') : 'None selected';
+
+            const desc = document.getElementById('description').value.trim();
+            const descRow = document.getElementById('review-desc-row');
+            if (desc) {
+                descRow.style.display = 'block';
+                document.getElementById('review-desc').textContent = `"${desc}"`;
+            } else {
+                descRow.style.display = 'none';
+            }
+        }
+
+        // ══════════════════════════════════════
+        //  VALIDATION ERRORS (inline, subtle)
+        // ══════════════════════════════════════
+        function showValidationError() {
+            const fields = ['firstName', 'lastName', 'email', 'phone'];
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el.value.trim()) {
+                    el.style.borderColor = '#D9534F';
+                    el.style.boxShadow = '0 0 0 3px rgba(217,83,79,0.1)';
+                    el.addEventListener('input', () => {
+                        el.style.borderColor = '';
+                        el.style.boxShadow = '';
+                    }, { once: true });
+                }
+            });
+            // scroll to first empty
+            const firstEmpty = fields.find(id => !document.getElementById(id).value.trim());
+            if (firstEmpty) document.getElementById(firstEmpty).focus();
+        }
+
+        function showServiceError() {
+            const container = document.getElementById('servicesPills');
+            container.style.outline = '2px solid rgba(217,83,79,0.4)';
+            container.style.borderRadius = '10px';
+            setTimeout(() => { container.style.outline = ''; }, 2500);
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ══════════════════════════════════════
+        //  SUBMIT
+        // ══════════════════════════════════════
+        function submitBooking() {
+            // Populate confirmation
+            document.getElementById('conf-datetime').textContent =
+                state.selectedDate.toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) +
+                ' at ' + state.selectedTime;
+
+            const durMap = { '30': '30 minutes', '60': '1 hour', '90': '90 minutes' };
+            document.getElementById('conf-duration').textContent = durMap[state.selectedDuration];
+
+            const first = document.getElementById('firstName').value.trim();
+            const last = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            document.getElementById('conf-client').textContent = `${first} ${last} · ${email}`;
+
+            document.getElementById('conf-services').textContent =
+                [...state.selectedServices].join(', ') || '—';
+
+            // Trigger n8n webhook here — placeholder
+            // fetch('YOUR_N8N_WEBHOOK_URL', {
+            //   method: 'POST',
+            //   headers: { 'Content-Type': 'application/json' },
+            //   body: JSON.stringify({
+            //     name: first + ' ' + last,
+            //     email: email,
+            //     phone: document.getElementById('phone').value.trim(),
+            //     company: document.getElementById('company').value.trim(),
+            //     date: state.selectedDate.toISOString(),
+            //     time: state.selectedTime,
+            //     duration: state.selectedDuration,
+            //     services: [...state.selectedServices],
+            //     description: document.getElementById('description').value.trim(),
+            //   })
+            // });
+
+            // Switch views
+            document.getElementById('bookingFlow').classList.add('hidden');
+            const conf = document.getElementById('confirmationScreen');
+            conf.classList.remove('hidden');
+            conf.classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ══════════════════════════════════════
+        //  INIT
+        // ══════════════════════════════════════
+        initCalendar();
+    </script>
+</body>
+
+</html>

@@ -11,6 +11,16 @@ const routes = [
     name: 'booking',
     component: () => import('@/views/BookingView.vue')
   },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: () => import('@/views/BlogView.vue')
+  },
+  {
+    path: '/calculators',
+    name: 'calculators',
+    component: () => import('@/views/CalculatorsView.vue')
+  },
   // Portal stubs — lazy-loaded, zero bundle cost until used
   {
     path: '/portal/login',

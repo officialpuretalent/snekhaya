@@ -8,7 +8,8 @@
       <ul class="nav-links">
         <li><a href="#about" @click="handleAnchorClick('#about')">About</a></li>
         <li><a href="#services" @click="handleAnchorClick('#services')">Services</a></li>
-        <li><a href="#leadership" @click="handleAnchorClick('#leadership')">Leadership</a></li>
+        <li><RouterLink to="/blog">Insights</RouterLink></li>
+        <li><RouterLink to="/calculators">Calculators</RouterLink></li>
         <li><a href="#contact" @click="handleAnchorClick('#contact')">Contact</a></li>
       </ul>
 
@@ -37,7 +38,8 @@
   >
     <a href="#about" @click="handleMobileAnchorClick('#about')">About</a>
     <a href="#services" @click="handleMobileAnchorClick('#services')">Services</a>
-    <a href="#leadership" @click="handleMobileAnchorClick('#leadership')">Leadership</a>
+    <RouterLink to="/blog" @click="closeMenu">Insights</RouterLink>
+    <RouterLink to="/calculators" @click="closeMenu">Calculators</RouterLink>
     <a href="#contact" @click="handleMobileAnchorClick('#contact')">Contact</a>
     <a href="#contact" class="nav-mobile-cta" @click="handleMobileAnchorClick('#contact')">Enquire Now</a>
   </div>

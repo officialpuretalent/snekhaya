@@ -65,12 +65,17 @@
                 <div :class="['step-line', { done: currentStep > 1 }]" id="step-line-1"></div>
                 <div :class="['step', { active: currentStep === 2, done: currentStep > 2 }]" id="step-indicator-2">
                     <div class="step-circle"><span class="step-num">2</span></div>
-                    <span class="step-label">Your Details</span>
+                    <span class="step-label">Details</span>
                 </div>
                 <div :class="['step-line', { done: currentStep > 2 }]" id="step-line-2"></div>
                 <div :class="['step', { active: currentStep === 3, done: currentStep > 3 }]" id="step-indicator-3">
                     <div class="step-circle"><span class="step-num">3</span></div>
-                    <span class="step-label">Confirm</span>
+                    <span class="step-label">Review</span>
+                </div>
+                <div :class="['step-line', { done: currentStep > 3 }]" id="step-line-3"></div>
+                <div :class="['step', { active: currentStep === 4, done: currentStep > 4 }]" id="step-indicator-4">
+                    <div class="step-circle"><span class="step-num">4</span></div>
+                    <span class="step-label">Payment</span>
                 </div>
             </div>
 
@@ -442,10 +447,9 @@
                     <div class="panel-footer">
                         <span class="panel-footer-note">
                             <svg viewBox="0 0 24 24">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                             </svg>
-                            Confirmation sent to your email
+                            Review your details before proceeding to payment
                         </span>
                         <div class="panel-footer-actions">
                             <button class="btn btn-ghost" @click="goToStep(2)">
@@ -454,15 +458,136 @@
                                 </svg>
                                 Back
                             </button>
-                            <button class="btn btn-gold-full" id="submitBtn" @click="submitBooking()">
-                                Confirm Booking
+                            <button class="btn btn-primary" id="step3Next" @click="goToStep(4)">
+                                Proceed to Payment
                                 <svg viewBox="0 0 24 24">
-                                    <polyline points="20 6 9 17 4 12" />
+                                    <polyline points="9 18 15 12 9 6" transform="rotate(180 12 12)" />
                                 </svg>
                             </button>
                         </div>
                     </div>
                 </div><!-- /panel-3 -->
+
+
+                <!-- ───────────────────────────────────
+         STEP 4 · PAYMENT
+    ─────────────────────────────────────── -->
+                <div class="step-panel" v-show="currentStep === 4" id="panel-4">
+                    <div class="payment-layout">
+
+                        <!-- Order summary -->
+                        <div>
+                            <div class="payment-section-title">Order Summary</div>
+                            <div class="order-summary">
+                                <div class="order-row">
+                                    <div>
+                                        <div class="order-row-label">Consultation</div>
+                                        <div style="font-size:0.75rem;color:var(--ink-4);margin-top:0.2rem">{{ durationLabel }} · R996/hr</div>
+                                    </div>
+                                    <div class="order-row-value">{{ formattedFee }}</div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-row-label">Date &amp; Time</div>
+                                    <div class="order-row-value" style="text-align:right;max-width:200px;font-size:0.8125rem">{{ formattedDateTime }}</div>
+                                </div>
+                                <div class="order-row order-total">
+                                    <div class="order-row-label">Total Due</div>
+                                    <div class="order-row-value">{{ formattedFee }}</div>
+                                </div>
+                            </div>
+
+                            <p style="margin-top:1.25rem;font-size:0.75rem;font-weight:300;color:var(--ink-4);line-height:1.75">
+                                This consultation is billed at <strong style="font-weight:500;color:var(--ink-3)">R996 per hour</strong>. Payment is collected upfront to secure your booking.
+                            </p>
+                        </div>
+
+                        <!-- Card payment form -->
+                        <div>
+                            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+                                <div class="payment-section-title" style="margin-bottom:0">Payment Details</div>
+                                <div class="mock-badge">
+                                    <span class="mock-badge-dot"></span>
+                                    Demo Mode
+                                </div>
+                            </div>
+
+                            <div class="card-form">
+                                <!-- Card brand icons -->
+                                <div class="card-icons">
+                                    <div class="card-icon">
+                                        <svg viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#1A1F71" fill-opacity="0.08"/><rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="#000" stroke-opacity="0.08"/><text x="19" y="16" text-anchor="middle" font-size="8" font-weight="700" fill="#1A1F71" font-family="sans-serif">VISA</text></svg>
+                                    </div>
+                                    <div class="card-icon">
+                                        <svg viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#EB001B" fill-opacity="0.06"/><rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="#000" stroke-opacity="0.08"/><circle cx="15" cy="12" r="6" fill="#EB001B" fill-opacity="0.7"/><circle cx="23" cy="12" r="6" fill="#F79E1B" fill-opacity="0.7"/></svg>
+                                    </div>
+                                    <div class="card-icon">
+                                        <svg viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#006FCF" fill-opacity="0.06"/><rect x="0.5" y="0.5" width="37" height="23" rx="3.5" stroke="#000" stroke-opacity="0.08"/><text x="19" y="16" text-anchor="middle" font-size="6" font-weight="700" fill="#006FCF" font-family="sans-serif">AMEX</text></svg>
+                                    </div>
+                                </div>
+
+                                <!-- Card number -->
+                                <div class="fgroup" style="margin:0">
+                                    <label class="flabel">Card Number *</label>
+                                    <input type="text" inputmode="numeric" :class="['finput', { 'input-error': paymentErrors.cardNumber }]" v-model="cardNumber" @input="onCardNumberInput" placeholder="1234  5678  9012  3456" maxlength="19" autocomplete="cc-number">
+                                </div>
+
+                                <!-- Name -->
+                                <div class="fgroup" style="margin:0">
+                                    <label class="flabel">Cardholder Name *</label>
+                                    <input type="text" :class="['finput', { 'input-error': paymentErrors.cardName }]" v-model="cardName" placeholder="Name as on card" autocomplete="cc-name">
+                                </div>
+
+                                <!-- Expiry + CVV -->
+                                <div class="card-row">
+                                    <div class="fgroup" style="margin:0">
+                                        <label class="flabel">Expiry *</label>
+                                        <input type="text" inputmode="numeric" :class="['finput', { 'input-error': paymentErrors.cardExpiry }]" v-model="cardExpiry" @input="onCardExpiryInput" placeholder="MM / YY" maxlength="5" autocomplete="cc-exp">
+                                    </div>
+                                    <div class="fgroup" style="margin:0">
+                                        <label class="flabel">CVV *</label>
+                                        <input type="text" inputmode="numeric" :class="['finput', { 'input-error': paymentErrors.cardCvv }]" v-model="cardCvv" placeholder="123" maxlength="4" autocomplete="cc-csc">
+                                    </div>
+                                </div>
+
+                                <!-- Pay button -->
+                                <button class="pay-btn" :disabled="paymentProcessing" @click="submitBooking()">
+                                    <span v-if="!paymentProcessing">
+                                        Pay {{ formattedFee }}
+                                        <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-left:0.25rem"><polyline points="9 18 15 12 9 6" transform="rotate(180 12 12)"/></svg>
+                                    </span>
+                                    <span v-else class="pay-btn-processing">
+                                        <span class="pay-spinner"></span>
+                                        Processing…
+                                    </span>
+                                </button>
+
+                                <div class="pay-secure-note">
+                                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Demo only — no real charge will be made
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="panel-footer">
+                        <span class="panel-footer-note">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            Simulated secure checkout — no real payment is processed
+                        </span>
+                        <div class="panel-footer-actions">
+                            <button class="btn btn-ghost" @click="goToStep(3)">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                </div><!-- /panel-4 -->
 
             </div><!-- /booking-card -->
         </div><!-- /bookingFlow -->
@@ -504,6 +629,10 @@
                     <div class="conf-detail">
                         <div class="conf-detail-label">Services</div>
                         <div class="conf-detail-value" id="conf-services">{{ servicesSummary }}</div>
+                    </div>
+                    <div class="conf-detail">
+                        <div class="conf-detail-label">Amount Paid</div>
+                        <div class="conf-detail-value" id="conf-amount" style="color:var(--gold)">{{ formattedFee }}</div>
                     </div>
                 </div>
 
@@ -591,7 +720,10 @@
                     showConfirmation: false,
                     firstName: '', lastName: '', email: '', phone: '', company: '', description: '',
                     errors: {},
-                    servicesError: false
+                    servicesError: false,
+                    cardNumber: '', cardName: '', cardExpiry: '', cardCvv: '',
+                    paymentErrors: {},
+                    paymentProcessing: false
                 };
             },
             computed: {
@@ -662,6 +794,17 @@
                 },
                 selectedDateKey() {
                     return this.selectedDate ? this.selectedDate.toDateString() : 'none';
+                },
+                consultationFee() {
+                    const map = { '30': 498, '60': 996, '90': 1494 };
+                    return map[this.selectedDuration] || 996;
+                },
+                formattedFee() {
+                    return 'R\u00A0' + this.consultationFee.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+                },
+                durationLabel() {
+                    const map = { '30': '30-minute session', '60': '1-hour session', '90': '90-minute session' };
+                    return map[this.selectedDuration] || '1-hour session';
                 }
             },
             methods: {
@@ -698,6 +841,23 @@
                         if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     });
                 },
+                onCardNumberInput(e) {
+                    const raw = e.target.value.replace(/\D/g, '').substring(0, 16);
+                    this.cardNumber = raw.replace(/(.{4})(?=.)/g, '$1  ');
+                },
+                onCardExpiryInput(e) {
+                    let raw = e.target.value.replace(/\D/g, '').substring(0, 4);
+                    this.cardExpiry = raw.length > 2 ? raw.substring(0, 2) + ' / ' + raw.substring(2) : raw;
+                },
+                validatePayment() {
+                    const errors = {};
+                    if (this.cardNumber.replace(/\s/g, '').length < 13) errors.cardNumber = true;
+                    if (!this.cardName.trim()) errors.cardName = true;
+                    if (this.cardExpiry.replace(/\D/g, '').length < 4) errors.cardExpiry = true;
+                    if (this.cardCvv.length < 3) errors.cardCvv = true;
+                    this.paymentErrors = errors;
+                    return Object.keys(errors).length === 0;
+                },
                 validateStep2() {
                     const errors = {};
                     if (!this.firstName.trim()) errors.firstName = true;
@@ -709,8 +869,13 @@
                     return Object.keys(errors).length === 0 && !this.servicesError;
                 },
                 submitBooking() {
-                    this.showConfirmation = true;
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (!this.validatePayment()) return;
+                    this.paymentProcessing = true;
+                    setTimeout(() => {
+                        this.paymentProcessing = false;
+                        this.showConfirmation = true;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 2000);
                 }
             },
             mounted() {

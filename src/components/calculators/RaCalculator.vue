@@ -8,6 +8,7 @@
       </p>
     </div>
 
+    <div class="calc-form-card">
     <div class="calc-form">
       <div class="calc-field-group">
         <label class="calc-label">Gross Annual Income</label>
@@ -42,20 +43,23 @@
 
       <div class="calc-field-group">
         <label class="calc-label">Your Marginal Income Tax Rate</label>
-        <select v-model="marginalRate" class="calc-select">
-          <option :value="0.18">18%</option>
-          <option :value="0.26">26%</option>
-          <option :value="0.31">31%</option>
-          <option :value="0.36">36%</option>
-          <option :value="0.39">39%</option>
-          <option :value="0.41">41%</option>
-          <option :value="0.45">45%</option>
-        </select>
+        <div class="calc-select-wrap">
+          <select v-model="marginalRate" class="calc-select">
+            <option :value="0.18">18%</option>
+            <option :value="0.26">26%</option>
+            <option :value="0.31">31%</option>
+            <option :value="0.36">36%</option>
+            <option :value="0.39">39%</option>
+            <option :value="0.41">41%</option>
+            <option :value="0.45">45%</option>
+          </select>
+        </div>
       </div>
 
       <button class="btn btn-primary btn-arrow calc-submit" @click="calculate" type="button">
         Calculate
       </button>
+    </div>
     </div>
 
     <transition name="calc-fade">

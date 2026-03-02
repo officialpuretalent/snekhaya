@@ -59,7 +59,7 @@
               :value="store.cardNumber"
               @input="store.onCardNumberInput($event.target.value)"
               placeholder="1234  5678  9012  3456"
-              maxlength="19"
+              maxlength="22"
               autocomplete="cc-number"
             >
           </div>
@@ -85,7 +85,7 @@
                 :value="store.cardExpiry"
                 @input="store.onCardExpiryInput($event.target.value)"
                 placeholder="MM / YY"
-                maxlength="5"
+                maxlength="7"
                 autocomplete="cc-exp"
               >
             </div>

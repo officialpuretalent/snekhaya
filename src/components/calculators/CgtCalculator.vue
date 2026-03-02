@@ -7,6 +7,7 @@
       </p>
     </div>
 
+    <div class="calc-form-card">
     <div class="calc-form">
       <div class="calc-field-group">
         <label class="calc-label">Proceeds (Sale Price)</label>
@@ -27,13 +28,13 @@
 
       <div class="calc-field-group">
         <label class="calc-label">Apply Annual Exclusion (R{{ fmt2(yearData.cgtExclusion) }})?</label>
-        <div class="calc-radio-group">
-          <label class="calc-radio">
-            <input type="radio" v-model="applyExclusion" :value="true" />
+        <div class="calc-segment-group">
+          <label :class="['calc-segment', { active: applyExclusion === true }]">
+            <input type="radio" v-model="applyExclusion" :value="true" class="calc-segment-radio" />
             <span>Yes — I haven't used my exclusion this year</span>
           </label>
-          <label class="calc-radio">
-            <input type="radio" v-model="applyExclusion" :value="false" />
+          <label :class="['calc-segment', { active: applyExclusion === false }]">
+            <input type="radio" v-model="applyExclusion" :value="false" class="calc-segment-radio" />
             <span>No — already applied against another gain</span>
           </label>
         </div>
@@ -42,20 +43,23 @@
       <div class="calc-field-group">
         <label class="calc-label">Your Marginal Income Tax Rate</label>
         <div class="calc-hint">Select your highest applicable tax bracket rate</div>
-        <select v-model="marginalRate" class="calc-select">
-          <option :value="0.18">18%</option>
-          <option :value="0.26">26%</option>
-          <option :value="0.31">31%</option>
-          <option :value="0.36">36%</option>
-          <option :value="0.39">39%</option>
-          <option :value="0.41">41%</option>
-          <option :value="0.45">45%</option>
-        </select>
+        <div class="calc-select-wrap">
+          <select v-model="marginalRate" class="calc-select">
+            <option :value="0.18">18%</option>
+            <option :value="0.26">26%</option>
+            <option :value="0.31">31%</option>
+            <option :value="0.36">36%</option>
+            <option :value="0.39">39%</option>
+            <option :value="0.41">41%</option>
+            <option :value="0.45">45%</option>
+          </select>
+        </div>
       </div>
 
       <button class="btn btn-primary btn-arrow calc-submit" @click="calculate" type="button">
         Calculate
       </button>
+    </div>
     </div>
 
     <transition name="calc-fade">

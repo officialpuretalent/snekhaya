@@ -8,17 +8,18 @@
       </p>
     </div>
 
+    <div class="calc-form-card">
     <div class="calc-form">
       <!-- Employment Type -->
       <div class="calc-field-group">
         <label class="calc-label">Employment Type</label>
-        <div class="calc-radio-group">
-          <label class="calc-radio">
-            <input type="radio" v-model="employmentType" value="employee" />
+        <div class="calc-segment-group">
+          <label :class="['calc-segment', { active: employmentType === 'employee' }]">
+            <input type="radio" v-model="employmentType" value="employee" class="calc-segment-radio" />
             <span>Employee (PAYE + UIF)</span>
           </label>
-          <label class="calc-radio">
-            <input type="radio" v-model="employmentType" value="selfemployed" />
+          <label :class="['calc-segment', { active: employmentType === 'selfemployed' }]">
+            <input type="radio" v-model="employmentType" value="selfemployed" class="calc-segment-radio" />
             <span>Self-employed / Provisional</span>
           </label>
         </div>
@@ -74,17 +75,17 @@
       <!-- Age -->
       <div class="calc-field-group">
         <label class="calc-label">Age Group</label>
-        <div class="calc-radio-group">
-          <label class="calc-radio">
-            <input type="radio" v-model="ageGroup" value="under65" />
+        <div class="calc-segment-group">
+          <label :class="['calc-segment', { active: ageGroup === 'under65' }]">
+            <input type="radio" v-model="ageGroup" value="under65" class="calc-segment-radio" />
             <span>Under 65</span>
           </label>
-          <label class="calc-radio">
-            <input type="radio" v-model="ageGroup" value="65to74" />
+          <label :class="['calc-segment', { active: ageGroup === '65to74' }]">
+            <input type="radio" v-model="ageGroup" value="65to74" class="calc-segment-radio" />
             <span>65–74</span>
           </label>
-          <label class="calc-radio">
-            <input type="radio" v-model="ageGroup" value="75plus" />
+          <label :class="['calc-segment', { active: ageGroup === '75plus' }]">
+            <input type="radio" v-model="ageGroup" value="75plus" class="calc-segment-radio" />
             <span>75 and older</span>
           </label>
         </div>
@@ -127,6 +128,7 @@
       <button class="btn btn-primary btn-arrow calc-submit" @click="calculate" type="button">
         Calculate
       </button>
+    </div>
     </div>
 
     <!-- Results -->

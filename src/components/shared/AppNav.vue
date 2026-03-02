@@ -14,7 +14,12 @@
       </ul>
 
       <div class="nav-action">
-        <a href="#contact" class="nav-contact" @click="handleAnchorClick('#contact')">Enquire Now</a>
+        <RouterLink to="/portal/login" class="nav-contact">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          Sign In
+        </RouterLink>
       </div>
 
       <button
@@ -41,7 +46,7 @@
     <RouterLink to="/blog" @click="closeMenu">Insights</RouterLink>
     <RouterLink to="/calculators" @click="closeMenu">Calculators</RouterLink>
     <a href="#contact" @click="handleMobileAnchorClick('#contact')">Contact</a>
-    <a href="#contact" class="nav-mobile-cta" @click="handleMobileAnchorClick('#contact')">Enquire Now</a>
+    <RouterLink to="/portal/login" class="nav-mobile-cta" @click="closeMenu">Sign In</RouterLink>
   </div>
 </template>
 

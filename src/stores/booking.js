@@ -162,7 +162,7 @@ export const useBookingStore = defineStore('booking', {
     },
     validatePayment() {
       const errors = {}
-      if (this.cardNumber.replace(/\s/g, '').length < 13) errors.cardNumber = true
+      if (this.cardNumber.replace(/\s/g, '').length < 16) errors.cardNumber = true
       if (!this.cardName.trim()) errors.cardName = true
       if (this.cardExpiry.replace(/\D/g, '').length < 4) errors.cardExpiry = true
       if (this.cardCvv.length < 3) errors.cardCvv = true

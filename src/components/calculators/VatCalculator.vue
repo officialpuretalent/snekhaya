@@ -7,6 +7,7 @@
       </p>
     </div>
 
+    <div class="calc-form-card">
     <div class="calc-form">
       <div class="calc-field-group">
         <label class="calc-label">Amount</label>
@@ -42,6 +43,7 @@
       <button class="btn btn-primary btn-arrow calc-submit" @click="calculate" type="button">
         Calculate
       </button>
+    </div>
     </div>
 
     <transition name="calc-fade">
